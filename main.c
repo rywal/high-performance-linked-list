@@ -22,8 +22,10 @@ int main(int argc, char ** argv)
 	{
 		Insert (testnums [i], buf, 50);   // insert 50 bytes from the buffer as value for each of the insertions
 	}
-	Insert (150, buf, 200); // this Insert should fail
+    Insert (150, buf, 200); // this Insert should fail
+    printf("Attempting to Print list\n");
 	PrintList ();
+    printf("Attempting to delete 7\n");
 	Delete (7);
 	Insert (13, msg, strlen(msg)+1);		// insertion of strings, copies the null byte at the end
 	Delete (55);
