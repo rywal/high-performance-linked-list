@@ -1,6 +1,21 @@
 #ifndef _linked_list_h_                   // include file only once
 #define _linked_list_h_
 
+struct node {
+    // --Header
+    struct node *next;
+    
+    // --Payload
+    int key; // Key
+    int value_len; // Length of the value
+    
+};
+
+struct node * head_pointer;
+struct node * free_pointer;
+int memory_pool;
+int node_size;
+
 void 	Init (int M, int b); // initializes the linked list, should be called once from the main
 void 	Destroy (); 		 //	destroys the linked list and cleans resources
 int 	Insert (int key,char * value_ptr, int value_len); // inserts the key and copies the value to the payload

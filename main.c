@@ -10,16 +10,19 @@ int main(int argc, char ** argv)
 	char buf [1024];
 	memset (buf, 1, 1024);		// set each byte to 1
 	
-	char * msg = "a sample message";
+	char *msg = "a sample message";
 	
-	Init (M,b); // initialize
+	char *head_pointer = Init (M,b); // initialize
+    char *free_pointer = head_pointer; // set free pointer to the head
+    
 	// test operations
 	int testnums [] = {100, 5, 200, 7, 39, 25, 400, 50, 200, 300};
 	int i = 0;
 	// some sample insertions
 	for (i=0; i< 10; i ++)
 	{
-		Insert (testnums [i], buf, 50);   // insert 50 bytes from the buffer as value for each of the insertions
+		free_pointer->Insert (testnums [i], buf, 50);   // insert 50 bytes from the buffer as value for each of the insertions
+        free_pointer
 	}
 	Insert (150, buf, 200); // this Insert should fail
 	PrintList ();
