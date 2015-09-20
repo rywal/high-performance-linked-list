@@ -12,8 +12,7 @@ int main(int argc, char ** argv)
 	
 	char *msg = "a sample message";
 	
-	char *head_pointer = Init (M,b); // initialize
-    char *free_pointer = head_pointer; // set free pointer to the head
+	Init (M,b); // initialize
     
 	// test operations
 	int testnums [] = {100, 5, 200, 7, 39, 25, 400, 50, 200, 300};
@@ -21,8 +20,7 @@ int main(int argc, char ** argv)
 	// some sample insertions
 	for (i=0; i< 10; i ++)
 	{
-		free_pointer->Insert (testnums [i], buf, 50);   // insert 50 bytes from the buffer as value for each of the insertions
-        free_pointer
+		Insert (testnums [i], buf, 50);   // insert 50 bytes from the buffer as value for each of the insertions
 	}
 	Insert (150, buf, 200); // this Insert should fail
 	PrintList ();
