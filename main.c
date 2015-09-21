@@ -4,6 +4,14 @@
 #include <getopt.h>
 #include "linked_list.h"
 
+//
+// Machine Problem 1
+// CSCE 313-501
+// Base code provided by Texas A&M University
+// Edited by Ryan Walters and Garrett Haynes
+// September 20, 2015
+//
+
 int main(int argc, char ** argv) 
 {
     int b = 128;

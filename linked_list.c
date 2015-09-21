@@ -2,6 +2,14 @@
 #include <string.h>
 #include "linked_list.h"
 
+//
+// Machine Problem 1
+// CSCE 313-501
+// Base code provided by Texas A&M University
+// Edited by Ryan Walters and Garrett Haynes
+// September 20, 2015
+//
+
 void Init (int M, int b){
     // allocate memory, given by M
     memory_pool = M;

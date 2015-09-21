@@ -1,6 +1,14 @@
 #ifndef _linked_list_h_                   // include file only once
 #define _linked_list_h_
 
+//
+// Machine Problem 1
+// CSCE 313-501
+// Base code provided by Texas A&M University
+// Edited by Ryan Walters and Garrett Haynes
+// September 20, 2015
+//
+
 struct node {
     // --Header
     struct node *next;
