@@ -15,7 +15,7 @@ struct node * head_pointer;
 char * free_pointer;
 int memory_pool;
 int node_size;
-int nodes = 0;
+int nodes;
 
 void   Init (int M, int b); // initializes the linked list, should be called once from the main
 void   Destroy (); 		 //	destroys the linked list and cleans resources

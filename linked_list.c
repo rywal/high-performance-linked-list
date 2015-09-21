@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "linked_list.h"
 
 void Init (int M, int b){
@@ -27,7 +28,7 @@ int Insert (int key, char * value_ptr, int value_len){
     
     // Make sure we can fit the value given
     if(value_len > node_size - (sizeof(key)+sizeof(value_len)+sizeof(free_pointer))){
-        printf("ERROR: The size of the value given is too large\n");
+        printf("ERROR: Insertion aborted because size of the value given is too large\n");
         return -1;
     }
     
@@ -42,7 +43,7 @@ int Insert (int key, char * value_ptr, int value_len){
     free_pointer = free_pointer + node_size;
     
     nodes++;
-    printf ("Inserted: Node = %i, Address = %p, Next Address = %p, Key = %i, Value Len = %i, size = %i\n", nodes, new_node, new_node->next, new_node->key, new_node->value_len, sizeof(struct node));
+    //    printf ("Inserted: Node = %i, Address = %p, Next Address = %p, Key = %i, Value Len = %i, size = %i\n", nodes, new_node, new_node->next, new_node->key, new_node->value_len, sizeof(struct node));
     return key;
 }
 
@@ -53,15 +54,13 @@ int Delete (int key){
     
     for(int i = 1; i <= nodes; i++){
         if (current_node->key == key && deleted != 1) {
-            if (previous_node) {
+            if (previous_node != NULL) {
                 previous_node->next = current_node->next;
             } else {
                 head_pointer = current_node->next;
             }
-            
-            free(current_node);
             nodes--;
-            printf("---Deleted: Node with key: %d\n", key);
+            printf("\nDeleted: Node with key: %d\n", key);
             deleted = 1;
         }
         previous_node = current_node;
@@ -71,17 +70,30 @@ int Delete (int key){
     if(deleted == 1) {
         return key;
     } else {
-        printf("ERROR: Failed to find a node with key: %d\n", key);
+        printf("\nERROR: Failed to find a node with key: %d\n", key);
         return -1;
     }
 }
 
-char* Lookup (int key){return NULL;}
+char* Lookup (int key){
+    struct node* current_node = head_pointer;
+    
+    for(int i = 1; i <= nodes; i++){
+        if (current_node->key == key) {
+            //printf("Found Key: %i, i: %i", key, i);
+            char* location = (char*) current_node + sizeof(struct node*);
+            //printf(" returning address: %p\n", location);
+            return location;
+        }
+        current_node = current_node->next;
+    }
+    return NULL;
+}
 
 void PrintList (){
     struct node* current_node = head_pointer;
     for(int i = 1; i <= nodes; i++){
-        printf ("Address = %p, Key = %d, Value Len = %d, Next Address = %p\n", current_node, current_node->key, current_node->value_len, current_node->next);
+        printf ("Key = %d, Value Len = %d\n", current_node->key, current_node->value_len);
         current_node = current_node->next;
     }
 }
