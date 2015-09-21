@@ -18,8 +18,7 @@ int main(int argc, char ** argv)
 	int testnums [] = {100, 5, 200, 7, 39, 25, 400, 50, 200, 300};
 	int i = 0;
 	// some sample insertions
-	for (i=0; i< 10; i ++)
-	{
+	for (i=0; i< 10; i ++) {
 		Insert (testnums [i], buf, 50);   // insert 50 bytes from the buffer as value for each of the insertions
 	}
     Insert (150, buf, 200); // this Insert should fail

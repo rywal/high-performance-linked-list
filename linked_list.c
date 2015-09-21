@@ -21,7 +21,7 @@ void Destroy (){
 int Insert (int key, char * value_ptr, int value_len){
     // Check if there is enough space to insert a new node
     if(nodes >= memory_pool / node_size){
-        printf("ERROR: There is not enough space available to add node with key: $d\n", key);
+        printf("ERROR: There is not enough space available to add node with key: %d\n", key);
         return -1;
     }
     
@@ -35,13 +35,14 @@ int Insert (int key, char * value_ptr, int value_len){
     struct node *new_node = free_pointer;
     new_node->key = key;
     new_node->next = free_pointer + node_size;
+    //printf("Assigning next node to be %p which is %p + %i", new_node->next, free_pointer, node_size);
     new_node->value_len = value_len;
     
     memcpy((free_pointer + sizeof(struct node)), value_ptr, value_len);
     free_pointer = free_pointer + node_size;
     
     nodes++;
-    printf ("---Inserted: Node = %i, Address = %p, Next Address = %p, Key = %i, Value Len = %i, size = %i\n", nodes, new_node, new_node->next, new_node->key, new_node->value_len, sizeof(struct node));
+    printf ("Inserted: Node = %i, Address = %p, Next Address = %p, Key = %i, Value Len = %i, size = %i\n", nodes, new_node, new_node->next, new_node->key, new_node->value_len, sizeof(struct node));
     return key;
 }
 
@@ -50,7 +51,7 @@ int Delete (int key){
     struct node* previous_node = NULL;
     int deleted = 0;
     
-    while(current_node){
+    for(int i = 1; i <= nodes; i++){
         if (current_node->key == key && deleted != 1) {
             if (previous_node) {
                 previous_node->next = current_node->next;
@@ -79,8 +80,8 @@ char* Lookup (int key){return NULL;}
 
 void PrintList (){
     struct node* current_node = head_pointer;
-    for(int i=1; i <= nodes; i++){
-        printf ("Address = %p, Key = %d, Value Len = %d\n", current_node, current_node->key, current_node->value_len);
-        current_node = current_node + node_size;
+    for(int i = 1; i <= nodes; i++){
+        printf ("Address = %p, Key = %d, Value Len = %d, Next Address = %p\n", current_node, current_node->key, current_node->value_len, current_node->next);
+        current_node = current_node->next;
     }
 }

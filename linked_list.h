@@ -12,7 +12,7 @@ struct node {
 };
 
 struct node * head_pointer;
-struct node * free_pointer;
+char * free_pointer;
 int memory_pool;
 int node_size;
 int nodes = 0;
