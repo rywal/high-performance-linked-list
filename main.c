@@ -14,23 +14,23 @@
 
 int main(int argc, char ** argv) 
 {
-    int b = 128;
-    int M = b*11;
+    int b = 128; // 128 bytes
+    int M = 512*1024; //512 kB
     int opt;
     
-//    while ((opt = getopt(argc, argv, "b:s:")) != -1) {
-//        switch (opt) {
-//            case 'b':
-//                b = atoi(optarg);
-//                break;
-//            case 's':
-//                M = atoi(optarg);
-//                break;
-//            default:
-//                b = 128;
-//                M = 512;
-//        }
-//    }
+    while ((opt = getopt(argc, argv, "b:s:")) != -1) {
+        switch (opt) {
+            case 'b':
+                b = atoi(optarg);
+                break;
+            case 's':
+                M = atoi(optarg);
+                break;
+            default:
+                b = 128;
+                M = 512*1024;
+        }
+    }
 	
 	char buf [1024];
 	memset (buf, 1, 1024);		// set each byte to 1
@@ -61,14 +61,12 @@ int main(int argc, char ** argv)
     
 	// a sample lookup operations that should return null, because it is looking up a non-existent number
 	char* kv = Lookup (3);
-    printf("Lookup of 3 - Returned with %p\n", kv);
 	if (kv)
 		printf ("Key = %d, Value Len = %d\n", *(int *) kv, *(int *) (kv+4));
 	
 	
 	// this look up  should succeed and print the string "a sample message"
     kv = Lookup (13);
-    printf("Lookup of 13 - Returned with %p\n", kv);
 	if (kv)
 		printf ("Key = %d, Value Len = %d, Value = %s\n", *(int *) kv, *(int *) (kv+4), kv + 8);
 	

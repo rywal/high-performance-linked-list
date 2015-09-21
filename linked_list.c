@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "linked_list.h"
 
 //
@@ -15,7 +16,7 @@ void Init (int M, int b){
     memory_pool = M;
     node_size = b;
     head_pointer = malloc(M);
-    free_pointer = head_pointer;
+    free_pointer = (char*)head_pointer;
 }
 
 void Destroy (){
@@ -41,9 +42,9 @@ int Insert (int key, char * value_ptr, int value_len){
     }
     
     // Create new node beginning at free_pointer location
-    struct node *new_node = free_pointer;
+    struct node *new_node = (struct node*)free_pointer;
     new_node->key = key;
-    new_node->next = free_pointer + node_size;
+    new_node->next = (struct node*)(free_pointer + node_size);
     //printf("Assigning next node to be %p which is %p + %i", new_node->next, free_pointer, node_size);
     new_node->value_len = value_len;
     
